@@ -29,7 +29,7 @@ class Connection
         $db_user= $config['DB_USER'];
         $db_password=$config['DB_PASSWORD'];
         $db_name=$config['DB_NAME'];
-        var_dump($config);
+
 
         return new PDO("mysql:host={$db_host};dbname={$db_name}",$db_user,$db_password);
     }

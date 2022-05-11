@@ -2,6 +2,8 @@
 
 namespace App\mysql;
 
+use App\Model\Post;
+
 
 class Database
 {
@@ -13,26 +15,16 @@ class Database
         $this->connection = Connection::getInstance()->getConnection();
     }
 
-
-    public function request(string $type, string $table, array $datas)
+    public function request(string $sql, array $array)
     {
         if ($this->connection) {
 
-            foreach ($datas as $data) {
-                $sql = match ($type){
-                    "INSERT" => "INSERT INTO {$table} VALUES (:{$data})",
-                    "UPDATE" => "UPDATE {$table} SET id=:{$data}",
-                    "DELETE" => "DELETE FROM {$table} WHERE id >=:{$data}",
-                };
-
-                $req = $this->connection->prepare($sql);
-
-                $req->execute([
-                    ":" . $data => $data
-                ]);
-               
+            $req = $this->connection->prepare($sql);
+            foreach ($array as $key => $value) {
+                $req->bindValue(':'.$key, $value);
             }
-            
+            $req->execute();
+
         }
     }
 }

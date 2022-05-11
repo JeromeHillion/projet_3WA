@@ -11,25 +11,33 @@ class PostRepository extends Repository
     private Post $post;
     private ?Database $database;
     private array $datas;
+    private string $table;
 
 
     public function __construct()
     {
         $this->database = new Database;
+        $this->table = "post";
     }
-
 
 
     public function create(Post $post)
     {
 
-        $datas = [$post];
-        $type = "INSERT";
-        $table = "post";
-       $req = $this->database->request($type, $table, $datas); 
-       if ($req){
-           echo "Entrée réussi !";
-       }
+        $array_post = [
+            "title" => $post->getTitle(),
+            "picture" => $post->getPicture(),
+            "description" => $post->getDescription(),
+
+        ];
+        $data_to_insert = [];
+        foreach ($array_post as $key => $value){
+            $data_to_insert+=[$key =>$value] ;
+        }
+
+        $sql = "INSERT INTO {$this->table}(title, picture, description) VALUES (:title, :picture, :description)";
+        $this->database->request($sql, $data_to_insert);
+
 
     }
 
