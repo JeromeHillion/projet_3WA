@@ -4,10 +4,9 @@ namespace App\Model;
 
 class Post
 {
-    protected String $title;
-    protected String $picture;
-    protected String $description;
-
+    protected string $title;
+    protected string $picture;
+    protected string $description;
 
     public function __construct()
     {
@@ -29,7 +28,6 @@ class Post
     {
         $this->title = $title;
     }
-
 
     /**
      * @return string
@@ -62,6 +60,5 @@ class Post
     {
         $this->description = $description;
     }
-
 
 }

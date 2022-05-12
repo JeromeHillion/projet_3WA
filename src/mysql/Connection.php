@@ -6,14 +6,14 @@ use PDO;
 
 class Connection
 {
-    private static $instance = null;
+    private static ?Connection $instance = null;
 
     private function __construct()
     {
 
     }
 
-    public static function getInstance()
+    public static function getInstance(): ?Connection
     {
         if (self::$instance === null) {
             self::$instance = new Connection();

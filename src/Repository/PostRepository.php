@@ -31,8 +31,8 @@ class PostRepository extends Repository
 
         ];
         $data_to_insert = [];
-        foreach ($array_post as $key => $value){
-            $data_to_insert+=[$key =>$value] ;
+        foreach ($array_post as $key => $value) {
+            $data_to_insert += [$key => $value];
         }
 
         $sql = "INSERT INTO {$this->table}(title, picture, description) VALUES (:title, :picture, :description)";

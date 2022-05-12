@@ -21,10 +21,9 @@ class Database
 
             $req = $this->connection->prepare($sql);
             foreach ($array as $key => $value) {
-                $req->bindValue(':'.$key, $value);
+                $req->bindValue(':' . $key, $value);
             }
             $req->execute();
-
         }
     }
 }
