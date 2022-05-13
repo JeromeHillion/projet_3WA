@@ -4,13 +4,11 @@ namespace App\Repository;
 
 use App\Model\Post;
 use App\mysql\Database;
-use App\Repository\Repository;
 
-class PostRepository extends Repository
+
+class PostRepository
 {
-    private Post $post;
     private ?Database $database;
-    private array $datas;
     private string $table;
 
 
@@ -21,13 +19,15 @@ class PostRepository extends Repository
     }
 
 
-    public function create(Post $post)
+    public function create(Post $post): void
     {
 
         $array_post = [
             "title" => $post->getTitle(),
             "picture" => $post->getPicture(),
             "description" => $post->getDescription(),
+            "dateAdded" => $post->getDateAdded(),
+            "dateUploaded" => $post->getDateUploaded()
 
         ];
         $data_to_insert = [];
@@ -35,7 +35,8 @@ class PostRepository extends Repository
             $data_to_insert += [$key => $value];
         }
 
-        $sql = "INSERT INTO {$this->table}(title, picture, description) VALUES (:title, :picture, :description)";
+        $sql = "INSERT INTO {$this->table}(title, picture, description)
+                VALUES (:title, :picture, :description)";
         $this->database->request($sql, $data_to_insert);
 
 
@@ -46,13 +47,22 @@ class PostRepository extends Repository
         // TODO: Implement add() method.
     }
 
-    public function update()
+    public function update(int $postId): void
     {
-        // TODO: Implement update() method.
+        $arrayPostId=[
+            "postId" => $postId
+        ];
+
+        $sql = "UPDATE FROM $this->table SET WHERE id= :postId";
+        $this->database->request($sql, $arrayPostId);
     }
 
-    public function delete()
+    public function delete(int $postId): void
     {
-        // TODO: Implement delete() method.
+        $arrayPostId=[
+            "postId" => $postId
+        ];
+        $sql = "DELETE FROM $this->table WHERE id = :postId";
+        $this->database->request($sql, $arrayPostId);
     }
 }

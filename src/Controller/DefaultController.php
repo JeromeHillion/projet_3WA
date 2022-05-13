@@ -2,12 +2,18 @@
 
 namespace App\Controller;
 
+use App\templates\Template;
+
 class DefaultController implements ControllerInterface
 {
 
 
     public function execute()
     {
-        echo "Hello DefaultControler";
+        $template = new Template();
+        $template->setTemplate('src/vues/test.php');
+        echo $template->render();
+
+
     }
 }

@@ -5,7 +5,6 @@ namespace App\Manager;
 use App\Controller\ControllerInterface;
 
 
-
 class ControllerManager
 {
 
@@ -27,14 +26,19 @@ class ControllerManager
         $url .= $_SERVER['REQUEST_URI'];
 
 
-        $part = explode("=",$url);
+        $part = explode("=", $url);
         unset($part[0]);
 
-        foreach( $part as $value){
+        $controllerName = "";
+        foreach ($part as $value) {
             $controllerName = $value;
         }
+
+        if ($controllerName == null) {
+            $controllerName = "Default";
+        }
         return $controllerName;
-        /*return array_shift($part);*/
+
     }
 
     public static function getController(): ControllerInterface
@@ -42,13 +46,9 @@ class ControllerManager
 
         $controllerName = self::getControllerName();
 
-        if (empty($controllerName)){
-            $controllerName = "Default";
-        }
-
         $controllerClass = 'App\\Controller\\' . $controllerName . 'Controller';
         if (!class_exists($controllerClass)) {
-            echo"Le controller n'existe pas !";
+            echo "Le controller n'existe pas !";
         }
         return new $controllerClass;
 

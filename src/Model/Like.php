@@ -4,19 +4,21 @@ namespace App\Model;
 
 class Like
 {
-    private Int $post_id;
-    private Int $user_id;
-    private Int $like;
+    private Int $postId;
+    private Int $userId;
+    private bool $like;
+    private DateTime $dateAdded;
+    private DateTime $dateUploaded;
 
     /**
-     * @param Int $post_id
-     * @param Int $user_id
-     * @param Int $like
+     * @param Int $postId
+     * @param Int $userId
+     * @param bool $like
      */
-    public function __construct(int $post_id, int $user_id, int $like)
+    public function __construct(int $postId, int $userId, bool $like)
     {
-        $this->post_id = $post_id;
-        $this->user_id = $user_id;
+        $this->postId = $postId;
+        $this->userId = $userId;
         $this->like = $like;
     }
 
@@ -25,15 +27,15 @@ class Like
      */
     public function getPostId(): int
     {
-        return $this->post_id;
+        return $this->postId;
     }
 
     /**
-     * @param int $post_id
+     * @param int $postId
      */
-    public function setPostId(int $post_id): void
+    public function setPostId(int $postId): void
     {
-        $this->post_id = $post_id;
+        $this->postId = $postId;
     }
 
     /**
@@ -41,21 +43,21 @@ class Like
      */
     public function getUserId(): int
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
     /**
-     * @param int $user_id
+     * @param int $userId
      */
-    public function setUserId(int $user_id): void
+    public function setUserId(int $userId): void
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getLike(): int
+    public function getLike(): bool
     {
         return $this->like;
     }
@@ -66,6 +68,38 @@ class Like
     public function setLike(int $like): void
     {
         $this->like = $like;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getDateAdded(): DateTime
+    {
+        return $this->dateAdded;
+    }
+
+    /**
+     * @param DateTime $dateAdded
+     */
+    public function setDateAdded(DateTime $dateAdded): void
+    {
+        $this->dateAdded = $dateAdded;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getDateUploaded(): DateTime
+    {
+        return $this->dateUploaded;
+    }
+
+    /**
+     * @param DateTime $dateUploaded
+     */
+    public function setDateUploaded(DateTime $dateUploaded): void
+    {
+        $this->dateUploaded = $dateUploaded;
     }
 
 

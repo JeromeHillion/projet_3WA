@@ -2,7 +2,6 @@
 
 
 use App\Manager\ControllerManager;
-
 require_once "vendor/autoload.php";
 
 /*$post = new Post();

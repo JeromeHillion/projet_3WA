@@ -7,6 +7,8 @@ class Post
     protected string $title;
     protected string $picture;
     protected string $description;
+    private DateTime $dateAdded;
+    private DateTime $dateUploaded;
 
     public function __construct()
     {
@@ -60,5 +62,35 @@ class Post
     {
         $this->description = $description;
     }
+    /**
+     * @return DateTime
+     */
+    public function getDateAdded(): DateTime
+    {
+        return $this->dateAdded;
+    }
 
+    /**
+     * @param DateTime $dateAdded
+     */
+    public function setDateAdded(DateTime $dateAdded): void
+    {
+        $this->dateAdded = $dateAdded;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getDateUploaded(): DateTime
+    {
+        return $this->dateUploaded;
+    }
+
+    /**
+     * @param DateTime $dateUploaded
+     */
+    public function setDateUploaded(DateTime $dateUploaded): void
+    {
+        $this->dateUploaded = $dateUploaded;
+    }
 }
